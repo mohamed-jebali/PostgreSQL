@@ -1,0 +1,92 @@
+--> INSERIMENTO DATI ROW (RIGHE) // concetto simile ai seeder in LARAVEL
+
+
+1. per inserire un record ll'interno della tabella persons da terminale
+
+input: 
+
+        mohamed=# INSERT INTO persons(
+        mohamed(# name,
+        mohamed(# last_name,
+        mohamed(# date_of_birth)
+        mohamed-# VALUES('LEONIDA','SPARTA',DATE '1998-09-21');
+
+        
+output: 
+
+        INSERT 0 1
+        
+
+2. per verificare che i dati sono stati inseriti si inserisce la query SQL
+
+input:
+
+        mohamed=# SELECT * FROM persons;
+
+
+
+output: 
+
+        id |  name   | last_name | date_of_birth 
+        ----+---------+-----------+---------------
+        1 | DARIO   | SERSE     | 1999-03-31
+        2 | LEONIDA | SPARTA    | 1998-09-21
+        (2 rows)
+
+
+3. si puo' generare dei dati su questo sito: https://www.mockaroo.com/
+
+
+4. una volta scaricato il file .sql si puo o scrivere i dati generati da nome-database=# 
+
+
+input e output: 
+
+        ecommerce=# create table persons (
+        ecommerce(# id INT,
+        ecommerce(# first_name VARCHAR(50),
+        ecommerce(# last_name VARCHAR(50),
+        ecommerce(# email VARCHAR(50),
+        ecommerce(# gender VARCHAR(50),
+        ecommerce(# date_of_birth DATE,
+        ecommerce(# country_of_birth VARCHAR(50)
+        ecommerce(# );
+        CREATE TABLE
+        ecommerce=# insert into persons (id, first_name, last_name, email, gender, date_of_birth, country_of_birth) values (1, 'Lacie', 'Mirams', 'lmirams0@prnewswire.com', 'Female', '2/21/2023', 'United States');
+        INSERT 0 1
+        ecommerce=# insert into persons (id, first_name, last_name, email, gender, date_of_birth, country_of_birth) values (2, 'Cassi', 'Parker', null, 'Female', '7/17/2023', 'Afghanistan');
+        INSERT 0 1
+        ecommerce=# insert into persons (id, first_name, last_name, email, gender, date_of_birth, country_of_birth) values (3, 'Patsy', 'Higounet', 'phigounet2@cloudflare.com', 'Female', '7/21/2023', 'Indonesia');
+        INSERT 0 1
+        ecommerce=# insert into persons (id, first_name, last_name, email, gender, date_of_birth, country_of_birth) values (4, 'Emmett', 'Bachs', null, 'Male', '3/5/2023', 'Ecuador');
+
+
+5. oppure si puo' scaricare il file .sql ed eseguirlo da terminale
+
+input: caso 1 --> nome-database=# \i /Users/mohamed/Downloads/persons.sql
+
+       caso 2 -->   \cd "/Users/mohamed/Desktop/prove programmazione/DB FILE/"
+                    \i persons.sql
+
+
+       
+
+output: 
+
+        ]CREATE TABLE
+        INSERT 0 1
+        INSERT 0 1
+        INSERT 0 1
+        INSERT 0 1
+        INSERT 0 1
+        INSERT 0 1
+        INSERT 0 1
+        INSERT 0 1
+        INSERT 0 1
+        INSERT 0 1
+        ecommerce=# \d
+                List of relations
+        Schema |  Name   | Type  |  Owner  
+        --------+---------+-------+---------
+        public | persons | table | mohamed
+        (1 row)

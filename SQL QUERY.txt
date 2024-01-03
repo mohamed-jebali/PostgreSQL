@@ -1,0 +1,45 @@
+
+--> selezionare tutti i dati con righe e colonne
+
+SELECT *
+FROM persons;
+
+esempio terminale:
+
+            template1=# SELECT * FROM persons;
+            id | first_name | last_name |          email           | gender | date_of_birth |   country_of_birth    
+            ----+------------+-----------+--------------------------+--------+---------------+-----------------------
+            1 | Fayth      | Orsman    | forsman0@buzzfeed.com    | Female | 2023-02-09    | Morocco
+            2 | Ethelin    | Hurran    | ehurran1@ebay.com        | Female | 2023-08-26    | Indonesia
+            3 | Mitch      | Flinders  | mflinders2@rediff.com    | Male   | 2023-09-02    | Ireland
+            4 | Mikol      | Preshaw   | mpreshaw3@reddit.com     | Male   | 2023-10-29    | Indonesia
+            5 | Marianne   | Paolo     | mpaolo4@pinterest.com    | Female | 2023-06-03    | Mali
+            6 | Ursulina   | Yushin    | uyushin5@sogou.com       | Female | 2023-03-15    | China
+            7 | Euell      | Luciani   | eluciani6@psu.edu        | Male   | 2023-03-15    | Palestinian Territory
+            8 | Misti      | Anster    | manster7@studiopress.com | Female | 2023-07-11    | China
+            9 | Binni      | Gull      | bgull8@geocities.jp      | Female | 2023-08-31    | Belarus
+            10 | Aurie      | Putson    | aputson9@upenn.edu       | Female | 2023-07-04    | Venezuela
+            (10 rows)
+
+
+--> selezionare l'attributo di riferiemento per mostrare la row del attributo selezionato
+
+SELECT first_name
+FROM persons;
+
+esempio terminale:  
+
+            template1=# SELECT first_name FROM persons;
+            first_name 
+            ------------
+            Fayth
+            Ethelin
+            Mitch
+            Mikol
+            Marianne
+            Ursulina
+            Euell
+            Misti
+            Binni
+            Aurie
+            (10 rows)

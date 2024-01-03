@@ -1,0 +1,44 @@
+POSTGRESQL intro
+
+--> Installazione per MacOS
+
+1. per l'installazione link: https://postgresapp.com/
+
+2. scaricare nella voce Additional Releases perche' supporta piu' versioni
+
+3. installa i file poi eseguire run il server simile a MAMP
+
+
+--> Configurazione
+
+1. per settare POSTGRESQL info link --> https://it.kitcorpuz.com/article/how_to_start_postgres_service_in_macos
+
+2. eseguire da terminale --> sudo mkdir -p /etc/paths.d &&
+                         --> echo /Applications/Postgres.app/Contents/Versions/latest/bin | sudo tee /etc/paths.d/postgresapp
+
+3. riavviare Postgres l'app poi da terminale --> psql -U postgres
+
+4. dopo per vedere la lista dei DB da terminale --> \list oppure --> \l
+
+
+--> Comandi
+
+1. si crea poi un DB con la query SQL --> CREATE DATABASE nome-database;
+
+2. per connetersi al DB da terminale con la query SQL --> \connect nome-database;  oppure --> \c nome-database;
+
+3. si puo' anche eliminare dei DB con --> DROP DATABASE nome-database;
+                                   oppure passare da DB ad un altro con --> \connect nome-database;
+
+4. Per uscire da psql, da terminale comando --> \q
+
+5. da terminale per psql --help per aiuto con i comandi
+
+--> INFO COMANDI
+
+1. -h (significa il host)
+
+2. -p (porta server)
+
+
+

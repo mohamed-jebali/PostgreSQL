@@ -1,0 +1,73 @@
+--> METODI QUERY SQL
+
+1. da terminale per poter creare una tabella all'interno di DB : esempio
+
+input: 
+            mohamed=# CREATE TABLE persons( // invio dopo questa linea dopo si imposta i valori delle colonne
+            mohamed(# id INT,
+            mohamed(# first_name VARCHAR(50),
+            mohamed(# last_name VARCHAR(50),
+            mohamed(# gender VARCHAR(7),
+            mohamed(# date_of_birth DATE); // infine per chiudere la query );
+            CREATE TABLE // in automatico output dovra' essere CREATE TABLE
+
+
+2. per visualizzare la tabella creata \d nome-tabella
+
+output: 
+            mohamed=# \d persons
+                                    Table "public.persons"
+                Column     |         Type          | Collation | Nullable | Default 
+            ---------------+-----------------------+-----------+----------+---------
+            id            | integer               |           |          | 
+            first_name    | character varying(50) |           |          | 
+            last_name     | character varying(50) |           |          | 
+            gender        | character varying(7)  |           |          | 
+            date_of_birth | date                  |           |          | 
+
+
+3. per visualizzare la lista delle tabelle all'interno del DB di riferimento da terminale:
+
+output: 
+
+            mohamed=# \d
+                        List of relations
+            Schema |     Name     |   Type   |  Owner  
+            --------+--------------+----------+---------
+            public | persons      | table    | mohamed
+            public | users        | table    | mohamed
+            public | users_id_seq | sequence | mohamed
+            (3 rows)
+
+
+--> AGGIUNGERE COSTRAINTS ALLE colonne // concetto simile alle migrations in LARAVEL
+
+1. per creare una tabella con dei limiti da rispettare cioe' delle regole che ogni colonna deve avere
+
+input: 
+
+
+        mohamed=# CREATE TABLE persons(
+        mohamed(# id BIGSERIAL NOT NULL PRIMARY KEY,
+        mohamed(# name VARCHAR(50) NOT NULL,
+        mohamed(# last_name VARCHAR(50) NOT NULL,
+        mohamed(# date_of_birth DATE);
+
+output:
+
+        CREATE TABLE
+
+
+2. per visualizzare i dati relativi alla tabella /d nome-tabella
+
+output: 
+
+                                            Table "public.persons"
+            Column     |         Type          | Collation | Nullable |               Default               
+        ---------------+-----------------------+-----------+----------+-------------------------------------
+        id            | bigint                |           | not null | nextval('persons_id_seq'::regclass)
+        name          | character varying(50) |           | not null | 
+        last_name     | character varying(50) |           | not null | 
+        date_of_birth | date                  |           |          | 
+        Indexes:
+            "persons_pkey" PRIMARY KEY, btree (id)
