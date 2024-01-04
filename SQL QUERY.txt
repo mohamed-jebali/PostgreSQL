@@ -148,3 +148,247 @@ output:
         98 | Deirdre    | Davydoch   | ddavydoch2p@cbsnews.com      | Female | 2023-10-13    | Indonesia
         100 | Georgiana  | Minmagh    | gminmagh2r@princeton.edu     | Female | 2023-08-12    | Indonesia
         (18 rows)
+
+
+--> OPERATORI SQL
+
+                    >
+                    >=
+                    <
+                    <=
+                    =
+                    !=
+
+esempio: 
+
+        template1=# SELECT 0 != 1;
+        ?column? 
+        ----------
+        t
+        (1 row)
+
+        template1=# 
+
+--> per semplificare le query SQL con l'uso dell'operatore IN invece di OR
+
+--> Nota Bene: nome-database-# significa che si e' andato a capo nella costruzione della query
+                si puo andare a capo per rendere piu' leggibile la query
+
+input: 
+
+        template1=# SELECT * 
+        template1-# FROM persons
+        template1-# WHERE country_of_birth IN ('Brazil','France','Russia');
+
+
+
+output: 
+
+        id | first_name | last_name  |          email           |   gender   | date_of_birth | country_of_birth 
+        ----+------------+------------+--------------------------+------------+---------------+------------------
+        5 | Kirby      | Suche      | ksuche4@ed.gov           | Agender    | 2023-02-26    | France
+        6 | Shelley    | Ensor      | sensor5@pen.io           | Male       | 2023-03-20    | France
+        10 | Iona       | Rastall    | irastall9@wikispaces.com | Female     | 2023-11-30    | France
+        12 | Hashim     | Gilchriest | hgilchriestb@nasa.gov    | Male       | 2023-02-05    | Brazil
+        20 | Valdemar   | Bowling    | vbowlingj@yahoo.com      | Male       | 2023-09-25    | Brazil
+        24 | Boothe     | Gillum     | bgillumn@indiatimes.com  | Male       | 2024-01-01    | Russia
+        44 | Claudius   | Charnick   | ccharnick17@patch.com    | Non-binary | 2023-05-03    | Russia
+        61 | Othella    | Coverley   | ocoverley1o@godaddy.com  | Female     | 2023-08-16    | Russia
+        72 | Bron       | Llopis     | bllopis1z@earthlink.net  | Male       | 2023-11-01    | France
+        97 | Dev        | Tefft      | dtefft2o@fema.gov        | Male       | 2023-12-19    | Brazil
+        (10 rows)
+
+
+--> per fare delle query piu complesse sia con la keyword IN che ORDER BY
+
+
+
+input: 
+
+        template1=# SELECT *
+        template1-# FROM persons 
+        template1-# WHERE country_of_birth IN ('France','Portugal')
+        template1-# ORDER BY country_of_birth ASC;
+
+
+
+
+output: 
+
+        id | first_name | last_name |          email           |  gender  | date_of_birth | country_of_birth 
+        ----+------------+-----------+--------------------------+----------+---------------+------------------
+        5 | Kirby      | Suche     | ksuche4@ed.gov           | Agender  | 2023-02-26    | France
+        6 | Shelley    | Ensor     | sensor5@pen.io           | Male     | 2023-03-20    | France
+        10 | Iona       | Rastall   | irastall9@wikispaces.com | Female   | 2023-11-30    | France
+        72 | Bron       | Llopis    | bllopis1z@earthlink.net  | Male     | 2023-11-01    | France
+        32 | Carlynne   | Cantle    | ccantlev@icq.com         | Female   | 2023-05-22    | Portugal
+        36 | Nickola    | Beynon    | nbeynonz@loc.gov         | Bigender | 2023-04-23    | Portugal
+        60 | Brendan    | Quinell   | bquinell1n@paypal.com    | Male     | 2023-06-15    | Portugal
+        29 | Consalve   | McPeake   | cmcpeakes@army.mil       | Male     | 2023-06-08    | Portugal
+        (8 rows)
+
+
+--> operatore BETWEEN filtra i dati in base ad un range nome-campo BETWEEN valore1 AND valore2
+
+input: 
+
+        template1=# SELECT *
+        template1-# FROM persons 
+        template1-# WHERE date_of_birth BETWEEN '2023-03-01' AND '2023-03-31';
+
+
+output:
+        id | first_name | last_name  |         email          | gender | date_of_birth | country_of_birth 
+        ----+------------+------------+------------------------+--------+---------------+------------------
+        6 | Shelley    | Ensor      | sensor5@pen.io         | Male   | 2023-03-20    | France
+        8 | Lira       | Isham      | lisham7@cmu.edu        | Female | 2023-03-07    | China
+        21 | Sholom     | Normaville | snormavillek@go.com    | Male   | 2023-03-17    | China
+        30 | Jamesy     | Vaux       | jvauxt@free.fr         | Male   | 2023-03-30    | Cyprus
+        41 | Lowell     | Dipple     | ldipple14@rambler.ru   | Male   | 2023-03-19    | Indonesia
+        52 | Virgilio   | McKane     | vmckane1f@hubpages.com | Male   | 2023-03-24    | Sweden
+        65 | Abraham    | Balogh     | abalogh1s@salon.com    | Male   | 2023-03-05    | Argentina
+        74 | Pippa      | Fayter     | pfayter21@baidu.com    | Female | 2023-03-02    | Philippines
+        (8 rows)
+
+
+--> operatore LIKE con % e molto utilie per filtrare i dati ci troviamo in una condizione: link-info --> https://codegrind.it/documentazione/sql/like
+    WHERE nome-campo LIKE '%.com'; --> filtra i dati che finiscono .com 
+    WHERE nome-campo LIKE 'a%'; --> filtra i dati che inziano a
+
+
+input e output: 
+
+
+        --> INIZIANO CON a
+
+        template1=# SELECT *
+        template1-# FROM persons
+        template1-# WHERE email LIKE 'a%';
+        id | first_name | last_name |          email           | gender | date_of_birth | country_of_birth 
+        ----+------------+-----------+--------------------------+--------+---------------+------------------
+        9 | Adolpho    | Houchen   | ahouchen8@soundcloud.com | Male   | 2023-09-03    | Indonesia
+        15 | Aggy       | Gillogley | agillogleye@cbslocal.com | Female | 2023-04-20    | Guinea
+        16 | Ag         | Theodoris | atheodorisf@mtv.com      | Female | 2023-08-18    | Yemen
+        65 | Abraham    | Balogh    | abalogh1s@salon.com      | Male   | 2023-03-05    | Argentina
+        95 | Artemas    | Jessen    | ajessen2m@wordpress.org  | Male   | 2023-04-04    | China
+        99 | Ainsley    | Liddel    | aliddel2q@meetup.com     | Female | 2023-05-13    | Nicaragua
+        (6 rows)
+
+
+
+        --> FINISCONO CON .fr
+
+        template1=# SELECT *
+        template1-# FROM persons
+        template1-# WHERE email LIKE '%fr';
+        id | first_name | last_name |             email              | gender | date_of_birth | country_of_birth 
+        ----+------------+-----------+--------------------------------+--------+---------------+------------------
+        30 | Jamesy     | Vaux      | jvauxt@free.fr                 | Male   | 2023-03-30    | Cyprus
+        42 | Georgianna | Fowley    | gfowley15@pagesperso-orange.fr | Female | 2023-05-03    | Sweden
+        68 | Leyla      | Cregeen   | lcregeen1v@unblog.fr           | Female | 2023-11-21    | Thailand
+        (3 rows)
+
+
+
+--> per filtrare i dati per la quantita' di persone in base al valore della colonna si usa
+    la keyword GROUP BY con la funzione COUNT(*)
+
+
+input: 
+
+        template1=# SELECT country_of_birth, COUNT (*)
+        template1-# FROM persons
+        template1-# GROUP BY country_of_birth
+        template1-# ORDER BY country_of_birth;
+
+
+
+output: 
+
+
+
+                country_of_birth         | count 
+        ----------------------------------+-------
+        Afghanistan                      |     1
+        American Samoa                   |     1
+        Argentina                        |     2
+        Belarus                          |     1
+        Brazil                           |     3
+        Canada                           |     1
+        China                            |    16
+        Colombia                         |     1
+        Costa Rica                       |     1
+        Croatia                          |     1
+        Cuba                             |     1
+        Cyprus                           |     1
+        Czech Republic                   |     1
+        Democratic Republic of the Congo |     1
+        Dominican Republic               |     1
+        Ethiopia                         |     1
+        Finland                          |     2
+        France                           |     4
+        Greece                           |     1
+        Guatemala                        |     1
+        Guinea                           |     1
+        Indonesia                        |    15
+        Iraq                             |     1
+        Ivory Coast                      |     1
+        Japan                            |     1
+        Libya                            |     1
+        Lithuania                        |     1
+        Madagascar                       |     1
+        Moldova                          |     1
+        Mongolia                         |     1
+        Morocco                          |     1
+        Nepal                            |     1
+        Nicaragua                        |     1
+        Pakistan                         |     2
+        Palestinian Territory            |     1
+        Panama                           |     1
+        Philippines                      |     5
+        Poland                           |     1
+        Portugal                         |     4
+        Russia                           |     3
+        Serbia                           |     1
+        South Korea                      |     1
+        Sweden                           |     2
+        Thailand                         |     3
+        Ukraine                          |     2
+        United Kingdom                   |     1
+        United States                    |     2
+        Uzbekistan                       |     1
+        Yemen                            |     1
+        (49 rows)
+
+
+--> la keyword HAVING permette di filtrare i dati in in base ad una altra condizione 
+    viene utlizzata assieme a GROUP BY per applicare un ulteriore filtraggio dei dati
+
+
+input:
+
+        template1=# SELECT country_of_birth, COUNT (*)
+        template1-# FROM persons
+        template1-# GROUP BY country_of_birth 
+        template1-# HAVING COUNT(*) >= 3 
+        template1-# ORDER BY country_of_birth;
+
+output: 
+
+        country_of_birth | count 
+        ------------------+-------
+        Brazil           |     3
+        China            |    16
+        France           |     4
+        Indonesia        |    15
+        Philippines      |     5
+        Portugal         |     4
+        Russia           |     3
+        Thailand         |     3
+        (8 rows)
+
+
+--> FUNZIONI DI AGGREGAZIONE link info --> https://www.postgresql.org/docs/16/functions-aggregate.html
+                             link info --> https://codegrind.it/documentazione/sql/funzioni-aggregate
+
+
