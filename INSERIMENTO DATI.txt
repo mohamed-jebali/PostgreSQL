@@ -65,7 +65,7 @@ input e output:
 
 input: caso 1 --> nome-database=# \i /Users/mohamed/Downloads/persons.sql
 
-       caso 2 -->   \cd "/Users/mohamed/Desktop/prove programmazione/DB FILE/"
+       caso 2 -->   \cd '/Users/mohamed/Desktop/prove programmazione/DB FILE/'
                     \i persons.sql
 
 
