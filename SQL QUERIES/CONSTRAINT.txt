@@ -1,0 +1,90 @@
+--> CONSTRAINT valore_colonna, indica una funzione in cui inserire dei vincoli da rispettare
+    ad esempio si puo' inserire una regola in qui un valore cioe' una row con un campo definito
+    non puo' essere uguale ad un altro guarda esempio sotto.
+
+
+
+
+
+
+esempio:
+
+
+
+input e output:
+
+
+
+                    template1=# ALTER TABLE persons ADD CONSTRAINT unique_email UNIQUE (email);
+                    ALTER TABLE
+
+
+
+                    --> RISULTATO TABELLA
+
+                    template1=# \d persons
+                                                            Table "public.persons"
+                        Column      |          Type          | Collation | Nullable |               Default               
+                    ------------------+------------------------+-----------+----------+-------------------------------------
+                    id               | bigint                 |           | not null | nextval('persons_id_seq'::regclass)
+                    first_name       | character varying(255) |           | not null | 
+                    last_name        | character varying(100) |           | not null | 
+                    email            | character varying(50)  |           |          | 
+                    gender           | character varying(50)  |           |          | 
+                    date_of_birth    | date                   |           | not null | 
+                    country_of_birth | character varying(100) |           | not null | 
+                    Indexes:
+                        "persons_pkey" PRIMARY KEY, btree (id)
+                        "unique_email" UNIQUE CONSTRAINT, btree (email)
+
+
+
+                  --> PROVA INSERIMENTO DUPLICATO
+
+                    template1=# insert into persons (id, first_name, last_name, email, gender, date_of_birth, country_of_birth) values (101, 'Vlad', 'Vladimirovic', 'ehawtry0@macromedia.com', 'Male', '7/10/1952', 'Russia');
+                    ERROR:  duplicate key value violates unique constraint "unique_email"
+                    DETAIL:  Key (email)=(ehawtry0@macromedia.com) already exists.
+                    template1=# 
+
+                  --> PER RIMUOVERE UN CONSTRAINT
+
+                  template1=# ALTER TABLE persons DROP CONSTRAINT unique_email;
+                  ALTER TABLE
+
+                  template1=# \d persons
+                                                        Table "public.persons"
+                    Column      |          Type          | Collation | Nullable |               Default               
+                ------------------+------------------------+-----------+----------+-------------------------------------
+                id               | bigint                 |           | not null | nextval('persons_id_seq'::regclass)
+                first_name       | character varying(255) |           | not null | 
+                last_name        | character varying(100) |           | not null | 
+                email            | character varying(50)  |           |          | 
+                gender           | character varying(50)  |           |          | 
+                date_of_birth    | date                   |           | not null | 
+                country_of_birth | character varying(100) |           | not null | 
+                Indexes:
+                    "persons_pkey" PRIMARY KEY, btree (id)
+
+
+                 --> UN ALTRO MODO PER MODIFICARE RENDERE IL VALORE UNICO
+
+
+                 template1=# ALTER TABLE persons ADD UNIQUE (email);
+                 ALTER TABLE
+
+                --> PER VERIFICARE SI NOTA CHE IL NOME DEL VINCOLO E NOMINATO DI Default DA POSTGRES
+
+                template1=# \d persons
+                                                        Table "public.persons"
+                    Column      |          Type          | Collation | Nullable |               Default               
+                ------------------+------------------------+-----------+----------+-------------------------------------
+                id               | bigint                 |           | not null | nextval('persons_id_seq'::regclass)
+                first_name       | character varying(255) |           | not null | 
+                last_name        | character varying(100) |           | not null | 
+                email            | character varying(50)  |           |          | 
+                gender           | character varying(50)  |           |          | 
+                date_of_birth    | date                   |           | not null | 
+                country_of_birth | character varying(100) |           | not null | 
+                Indexes:
+                    "persons_pkey" PRIMARY KEY, btree (id)
+                    "persons_email_key" UNIQUE CONSTRAINT, btree (email)

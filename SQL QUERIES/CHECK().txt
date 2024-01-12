@@ -1,0 +1,44 @@
+--> LA FUNZIONE CHECK(valore_colonna IN (condizioni)), permette vincolare i dati inseriti 
+    in base alle condizioni dichiarate nella funzione
+
+
+esempio:
+
+
+input e output:
+
+
+                template1=# ALTER TABLE persons ADD CONSTRAINT gender_constraint CHECK (gender IN ('Genderqueer', 'Bigender', 'Male', 'Polygender', 'Non-binary', 'Female', 'Agender'));
+                ALTER TABLE
+
+
+                
+                --> VERIFICA VINCOLI TABELLA 
+
+
+                template1=# \d persons;
+                                                        Table "public.persons"
+                    Column      |          Type          | Collation | Nullable |               Default               
+                ------------------+------------------------+-----------+----------+-------------------------------------
+                id               | bigint                 |           | not null | nextval('persons_id_seq'::regclass)
+                first_name       | character varying(255) |           | not null | 
+                last_name        | character varying(100) |           | not null | 
+                email            | character varying(50)  |           |          | 
+                gender           | character varying(50)  |           |          | 
+                date_of_birth    | date                   |           | not null | 
+                country_of_birth | character varying(100) |           | not null | 
+                Indexes:
+                    "persons_pkey" PRIMARY KEY, btree (id)
+                    "persons_email_key" UNIQUE CONSTRAINT, btree (email)
+                Check constraints:
+                    "gender_constraint" CHECK (gender::text = ANY (ARRAY['Genderqueer'::character varying, 'Bigender'::character varying, 'Male'::character varying, 'Polygender'::character varying, 'Non-binary'::character varying, 'Female'::character varying, 'Agender'::character varying]::text[]))
+
+
+
+                  --> SE TENTIAMO DI INSERIRE UN VALORE NON PRESENTE NELLE CONDIZIONI DELLA
+                  FUNZIONE CHECK() ALLORA L'output SARA'
+
+
+                template1=# INSERT INTO persons(id,first_name,last_name,email,gender,date_of_birth,country_of_birth) values (101,'Alex','Dawson','alexdawson@gmail.com','Not Defined', '10/01/2001', 'USA');
+                ERROR:  new row for relation "persons" violates check constraint "gender_constraint"
+                DETAIL:  Failing row contains (101, Alex, Dawson, alexdawson@gmail.com, Not Defined, 2001-10-01, USA).

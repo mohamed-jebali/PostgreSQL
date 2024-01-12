@@ -1,0 +1,26 @@
+--> LA FUNZIONE NULLIF(valore1,valore2), restituisce un valore nullo se entrambi i valori sono uguali
+    altrimenti restituisce il primo valore si usa quando si vuole gestire i valori nulli come la divisione con zero
+
+
+esempio:
+
+
+
+input e output:
+
+
+                template1=# SELECT 10 / NULLIF(0,0) AS result;
+                result 
+                --------
+                    
+                (1 row)
+
+
+                OPPURE CON LA FUNZIONE COALESCE()
+
+
+                template1=# SELECT COALESCE(10 / NULLIF(0,0), 0) AS result;
+                result 
+                --------
+                    0
+                (1 row)

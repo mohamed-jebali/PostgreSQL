@@ -1,0 +1,68 @@
+--> FUNZIONI DI AGGREGAZIONE link info --> https://www.postgresql.org/docs/16/functions-aggregate.html
+                             link info --> https://codegrind.it/documentazione/sql/funzioni-aggregate
+
+
+
+MAX(valore_colonna) --> calcola il valore massimo in base al campo inserito
+
+esempio: 
+
+
+input: 
+
+        carshop=# SELECT MAX(price)
+        carshop-# FROM cars;
+        max    
+        ----------
+        99975.60
+        (1 row)
+
+      
+      
+
+MIN(valore_colonna) --> calcola il valore minimo in base al campo inserito
+
+esempio: 
+
+
+input e output: 
+
+        carshop=# SELECT MIN(price)
+        carshop-# FROM cars;
+        min    
+        ----------
+        10022.19
+        (1 row)
+
+
+
+      
+
+AVG(valore_colonna) --> calcola il valore medio in base al campo inserito
+
+
+esempio: 
+
+input e output: 
+      
+        carshop=# SELECT ROUND(AVG(price)) --> ROUND() la funzione arrotonda il valore
+        carshop-# FROM cars;
+        round 
+        -------
+        55257
+        (1 row)
+     
+
+SUM(valore_colonna) --> calcola la somma delle colonna di riferiemento
+
+esempio:
+
+
+input e output:
+
+                carshop=# SELECT SUM(price)
+                carshop-# FROM cars;
+                sum     
+                -------------
+                55256657.62
+                (1 row)

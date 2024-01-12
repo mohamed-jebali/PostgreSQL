@@ -1,0 +1,21 @@
+--> operatore BETWEEN filtra i dati in base ad un range nome-campo BETWEEN valore1 AND valore2
+
+input: 
+
+        template1=# SELECT *
+        template1-# FROM persons 
+        template1-# WHERE date_of_birth BETWEEN '2023-03-01' AND '2023-03-31';
+
+
+output:
+        id | first_name | last_name  |         email          | gender | date_of_birth | country_of_birth 
+        ----+------------+------------+------------------------+--------+---------------+------------------
+        6 | Shelley    | Ensor      | sensor5@pen.io         | Male   | 2023-03-20    | France
+        8 | Lira       | Isham      | lisham7@cmu.edu        | Female | 2023-03-07    | China
+        21 | Sholom     | Normaville | snormavillek@go.com    | Male   | 2023-03-17    | China
+        30 | Jamesy     | Vaux       | jvauxt@free.fr         | Male   | 2023-03-30    | Cyprus
+        41 | Lowell     | Dipple     | ldipple14@rambler.ru   | Male   | 2023-03-19    | Indonesia
+        52 | Virgilio   | McKane     | vmckane1f@hubpages.com | Male   | 2023-03-24    | Sweden
+        65 | Abraham    | Balogh     | abalogh1s@salon.com    | Male   | 2023-03-05    | Argentina
+        74 | Pippa      | Fayter     | pfayter21@baidu.com    | Female | 2023-03-02    | Philippines
+        (8 rows)

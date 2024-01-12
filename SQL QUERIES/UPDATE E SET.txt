@@ -1,0 +1,30 @@
+--> LA KEYWORD SET viene usata assieme a UPDATE, per modificare un record cioe' una row
+    E' IMPORTANTE METTERE LA KEYWORD WHERE nome_colonna per specificare quale record
+    modificare, altrimenti verranno modificati tutti i record
+
+
+esempio:
+
+
+
+input e output:
+
+
+                template1=# UPDATE persons SET first_name = 'Olga' WHERE first_name = 'Ericha';
+                UPDATE 1
+                template1=# SELECT *
+                template1-# FROM persons;
+
+
+                --> VERIFICA TABELLA
+
+                   1 | Olga       | Hawtry     | ehawtry0@macromedia.com        | Female      | 1976-10-20    | Russia
+                   (100 rows)
+
+
+                --> PER MODIFICARE PIU DATI IN PIU' COLONNE
+
+                template1=# UPDATE persons SET first_name = 'Tatiana', last_name = 'Breznev' WHERE id = 1;
+                UPDATE 1
+
+                 1 | Tatiana    | Breznev    | ehawtry0@macromedia.com        | Female      | 1976-10-20    | Russia

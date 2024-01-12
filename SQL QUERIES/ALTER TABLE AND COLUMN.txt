@@ -1,0 +1,34 @@
+--> PER MODIFICARE I TIPI DI DATI DI UNA TABELLA SI UTLIZZA LA KEYWORD ALTER TABLE nome_tabella poi ALTER COLUMN nome_colonna
+
+
+esempio:
+
+
+input e output:
+
+
+
+                template1=# ALTER TABLE persons
+                template1-# ALTER COLUMN first_name TYPE VARCHAR(255);
+                ALTER TABLE
+
+
+
+
+                VERIFICA DELLA TABELLA
+
+                template1=# \d persons
+                                                        Table "public.persons"
+                    Column      |          Type          | Collation | Nullable |               Default               
+                ------------------+------------------------+-----------+----------+-------------------------------------
+                id               | bigint                 |           | not null | nextval('persons_id_seq'::regclass)
+                first_name       | character varying(255) |           | not null | 
+                last_name        | character varying(100) |           | not null | 
+                email            | character varying(50)  |           |          | 
+                gender           | character varying(50)  |           |          | 
+                date_of_birth    | date                   |           | not null | 
+                country_of_birth | character varying(100) |           | not null | 
+                Indexes:
+                    "persons_pkey" PRIMARY KEY, btree (id)
+
+                template1=# 

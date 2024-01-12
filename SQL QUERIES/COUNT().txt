@@ -1,0 +1,69 @@
+--> per filtrare i dati per la quantita' di persone in base al valore della colonna si usa
+    la keyword GROUP BY con la funzione COUNT(*)
+
+
+input: 
+
+        template1=# SELECT country_of_birth, COUNT (*)
+        template1-# FROM persons
+        template1-# GROUP BY country_of_birth
+        template1-# ORDER BY country_of_birth;
+
+
+
+output: 
+
+
+
+                country_of_birth         | count 
+        ----------------------------------+-------
+        Afghanistan                      |     1
+        American Samoa                   |     1
+        Argentina                        |     2
+        Belarus                          |     1
+        Brazil                           |     3
+        Canada                           |     1
+        China                            |    16
+        Colombia                         |     1
+        Costa Rica                       |     1
+        Croatia                          |     1
+        Cuba                             |     1
+        Cyprus                           |     1
+        Czech Republic                   |     1
+        Democratic Republic of the Congo |     1
+        Dominican Republic               |     1
+        Ethiopia                         |     1
+        Finland                          |     2
+        France                           |     4
+        Greece                           |     1
+        Guatemala                        |     1
+        Guinea                           |     1
+        Indonesia                        |    15
+        Iraq                             |     1
+        Ivory Coast                      |     1
+        Japan                            |     1
+        Libya                            |     1
+        Lithuania                        |     1
+        Madagascar                       |     1
+        Moldova                          |     1
+        Mongolia                         |     1
+        Morocco                          |     1
+        Nepal                            |     1
+        Nicaragua                        |     1
+        Pakistan                         |     2
+        Palestinian Territory            |     1
+        Panama                           |     1
+        Philippines                      |     5
+        Poland                           |     1
+        Portugal                         |     4
+        Russia                           |     3
+        Serbia                           |     1
+        South Korea                      |     1
+        Sweden                           |     2
+        Thailand                         |     3
+        Ukraine                          |     2
+        United Kingdom                   |     1
+        United States                    |     2
+        Uzbekistan                       |     1
+        Yemen                            |     1
+        (49 rows)

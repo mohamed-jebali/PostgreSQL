@@ -1,0 +1,47 @@
+--> OPERATORI SQL
+
+                    >
+                    >=
+                    <
+                    <=
+                    =
+                    !=
+
+esempio: 
+
+        template1=# SELECT 0 != 1;
+        ?column? 
+        ----------
+        t
+        (1 row)
+
+        template1=# 
+
+--> per semplificare le query SQL con l'uso dell'operatore IN invece di OR
+
+--> Nota Bene: nome-database-# significa che si e' andato a capo nella costruzione della query
+                si puo andare a capo per rendere piu' leggibile la query
+
+input: 
+
+        template1=# SELECT * 
+        template1-# FROM persons
+        template1-# WHERE country_of_birth IN ('Brazil','France','Russia');
+
+
+
+output: 
+
+        id | first_name | last_name  |          email           |   gender   | date_of_birth | country_of_birth 
+        ----+------------+------------+--------------------------+------------+---------------+------------------
+        5 | Kirby      | Suche      | ksuche4@ed.gov           | Agender    | 2023-02-26    | France
+        6 | Shelley    | Ensor      | sensor5@pen.io           | Male       | 2023-03-20    | France
+        10 | Iona       | Rastall    | irastall9@wikispaces.com | Female     | 2023-11-30    | France
+        12 | Hashim     | Gilchriest | hgilchriestb@nasa.gov    | Male       | 2023-02-05    | Brazil
+        20 | Valdemar   | Bowling    | vbowlingj@yahoo.com      | Male       | 2023-09-25    | Brazil
+        24 | Boothe     | Gillum     | bgillumn@indiatimes.com  | Male       | 2024-01-01    | Russia
+        44 | Claudius   | Charnick   | ccharnick17@patch.com    | Non-binary | 2023-05-03    | Russia
+        61 | Othella    | Coverley   | ocoverley1o@godaddy.com  | Female     | 2023-08-16    | Russia
+        72 | Bron       | Llopis     | bllopis1z@earthlink.net  | Male       | 2023-11-01    | France
+        97 | Dev        | Tefft      | dtefft2o@fema.gov        | Male       | 2023-12-19    | Brazil
+        (10 rows)

@@ -1,0 +1,27 @@
+--> PER ELIMINARE UN RECORD CIOE' UNA ROW DALLA TABELLA SI UTLIZZA LA KEYWORD DELETE
+
+esempio:
+
+
+input e output:
+
+
+                template1=# DELETE 
+                template1-# FROM persons
+                template1-# WHERE id = 1;
+                DELETE 1
+
+
+                VERIFICHIAMO LA TABELLA
+
+                template1=# SELECT *
+                template1-# FROM persons;
+                id  | first_name | last_name  |             email              |   gender    | date_of_birth |   country_of_birth    
+                -----+------------+------------+--------------------------------+-------------+---------------+-----------------------
+                2 | Ezra       | McClenan   | emcclenan1@pen.io              | Male        | 1998-07-16    | Japan
+                3 | Lester     | Howgill    |                                | Male        | 2004-10-09    | China
+                4 | Tilda      | Riggott    | triggott3@about.com            | Female      | 2000-09-30    | Haiti
+                5 | Pippo      | Warren     |                                | Agender     | 1982-02-18    | China
+                6 | Gayla      | Aldrich    |                                | Female      | 1947-10-08    | Cuba
+
+

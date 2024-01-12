@@ -1,0 +1,65 @@
+--> per fare delle query piu complesse sia con la keyword IN che ORDER BY
+
+
+
+input: 
+
+        template1=# SELECT *
+        template1-# FROM persons 
+        template1-# WHERE country_of_birth IN ('France','Portugal')
+        template1-# ORDER BY country_of_birth ASC;
+
+
+
+
+output: 
+
+        id | first_name | last_name |          email           |  gender  | date_of_birth | country_of_birth 
+        ----+------------+-----------+--------------------------+----------+---------------+------------------
+        5 | Kirby      | Suche     | ksuche4@ed.gov           | Agender  | 2023-02-26    | France
+        6 | Shelley    | Ensor     | sensor5@pen.io           | Male     | 2023-03-20    | France
+        10 | Iona       | Rastall   | irastall9@wikispaces.com | Female   | 2023-11-30    | France
+        72 | Bron       | Llopis    | bllopis1z@earthlink.net  | Male     | 2023-11-01    | France
+        32 | Carlynne   | Cantle    | ccantlev@icq.com         | Female   | 2023-05-22    | Portugal
+        36 | Nickola    | Beynon    | nbeynonz@loc.gov         | Bigender | 2023-04-23    | Portugal
+        60 | Brendan    | Quinell   | bquinell1n@paypal.com    | Male     | 2023-06-15    | Portugal
+        29 | Consalve   | McPeake   | cmcpeakes@army.mil       | Male     | 2023-06-08    | Portugal
+        (8 rows)
+
+
+--> operatore LIKE con % e molto utilie per filtrare i dati ci troviamo in una condizione: link-info --> https://codegrind.it/documentazione/sql/like
+    WHERE nome-campo LIKE '%.com'; --> filtra i dati che finiscono .com 
+    WHERE nome-campo LIKE 'a%'; --> filtra i dati che inziano a
+
+
+input e output: 
+
+
+        --> INIZIANO CON a
+
+        template1=# SELECT *
+        template1-# FROM persons
+        template1-# WHERE email LIKE 'a%';
+        id | first_name | last_name |          email           | gender | date_of_birth | country_of_birth 
+        ----+------------+-----------+--------------------------+--------+---------------+------------------
+        9 | Adolpho    | Houchen   | ahouchen8@soundcloud.com | Male   | 2023-09-03    | Indonesia
+        15 | Aggy       | Gillogley | agillogleye@cbslocal.com | Female | 2023-04-20    | Guinea
+        16 | Ag         | Theodoris | atheodorisf@mtv.com      | Female | 2023-08-18    | Yemen
+        65 | Abraham    | Balogh    | abalogh1s@salon.com      | Male   | 2023-03-05    | Argentina
+        95 | Artemas    | Jessen    | ajessen2m@wordpress.org  | Male   | 2023-04-04    | China
+        99 | Ainsley    | Liddel    | aliddel2q@meetup.com     | Female | 2023-05-13    | Nicaragua
+        (6 rows)
+
+
+
+        --> FINISCONO CON .fr
+
+        template1=# SELECT *
+        template1-# FROM persons
+        template1-# WHERE email LIKE '%fr';
+        id | first_name | last_name |             email              | gender | date_of_birth | country_of_birth 
+        ----+------------+-----------+--------------------------------+--------+---------------+------------------
+        30 | Jamesy     | Vaux      | jvauxt@free.fr                 | Male   | 2023-03-30    | Cyprus
+        42 | Georgianna | Fowley    | gfowley15@pagesperso-orange.fr | Female | 2023-05-03    | Sweden
+        68 | Leyla      | Cregeen   | lcregeen1v@unblog.fr           | Female | 2023-11-21    | Thailand
+        (3 rows)

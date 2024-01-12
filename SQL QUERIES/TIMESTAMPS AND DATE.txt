@@ -1,0 +1,108 @@
+-->LA FUNZIONE NOW() ci restituisce in output la data attuale con anno, mese, giorno, orario, e fuso orario
+
+
+esempio:
+
+input e output:
+
+                template1=# SELECT NOW();
+                            now              
+                -------------------------------
+                2024-01-11 20:47:36.145249+01
+                (1 row)
+
+
+                --> PER PRENDERE SOLO LA DATA
+
+                template1=# SELECT NOW()::DATE;
+                    now     
+                ------------
+                2024-01-11
+                (1 row)
+
+                --> PER PRENDERE SOLO L'ORARIO
+
+                template1=# SELECT NOW()::TIME;
+                    now       
+                -----------------
+                20:48:56.175965
+                (1 row)
+
+--> OPERATORE INTERVAL si puo usare per avere una data specifica eseguendo delle operazioni con la funzione NOW()
+
+
+esempio:
+
+input e output:
+
+                template1=# SELECT NOW()::TIME + INTERVAL '1 HOUR' AS tempo;
+                    tempo      
+                -----------------
+                21:57:32.465343
+                (1 row)
+
+                
+                --> PER FORMATTARE LE DATE
+
+
+                template1=# SELECT(NOW()::DATE + INTERVAL '6 DAYS')::DATE AS inizio_lavoro;
+                inizio_lavoro 
+                ---------------
+                2024-01-17
+                (1 row)
+
+
+
+--> FUNZIONE EXTRACT() serve per estrarre le date con cui si possono fare anche delle operazioni
+
+esempio:
+
+
+input e output:
+
+
+
+                              ^
+                    template1=# SELECT EXTRACT(CENTURY FROM NOW());
+                    extract 
+                    ---------
+                        21
+                    (1 row)
+
+
+
+                    template1=# SELECT EXTRACT(YEAR FROM NOW());
+                    extract 
+                    ---------
+                        2024
+                    (1 row)
+
+
+--> FUNZIONE AGE() restituisce l'eta se si ha come valore una colonna di tipo di dato DATE
+
+esempio:
+
+
+input e output:
+
+
+                template1=# SELECT first_name, last_name, AGE(NOW(),date_of_birth) AS age
+                template1-# FROM persons
+                template1-# ORDER BY age DESC;
+                first_name | last_name  |                   age                    
+                ------------+------------+------------------------------------------
+                Nicolea    | Helliker   | 78 years 11 mons 25 days 21:32:23.940338
+                Tades      | Marde      | 78 years 1 mon 25 days 21:32:23.940338
+                Jedidiah   | Nassie     | 76 years 3 mons 23 days 21:32:23.940338
+                Gayla      | Aldrich    | 76 years 3 mons 3 days 21:32:23.940338
+                Bryn       | Sonley     | 76 years 1 mon 23 days 21:32:23.940338
+                Odell      | Whitelaw   | 76 years 2 days 21:32:23.940338
+                Jerrold    | Thomel     | 74 years 11 days 21:32:23.940338
+                Germana    | Devonshire | 73 years 4 mons 1 day 21:32:23.940338
+                Krisha     | Luciani    | 72 years 6 mons 25 days 21:32:23.940338
+                Miguel     | Greenleaf  | 71 years 5 mons 15 days 21:32:23.940338
+                Johannah   | Gravenell  | 70 years 8 mons 11 days 21:32:23.940338
+                Ahmad      | Grzelewski | 70 years 7 mons 5 days 21:32:23.940338
+                Tyrus      | Mellmer    | 70 years 5 mons 24 days 21:32:23.940338
+                Jordana    | Espadero   | 68 years 2 mons 20 days 21:32:23.940338
+                Codi       | Bony       | 67 years 4 mons 15 days 21:32:23.940338

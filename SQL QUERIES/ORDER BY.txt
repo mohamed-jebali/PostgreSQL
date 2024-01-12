@@ -1,0 +1,52 @@
+--> per ordinare i dati in base al ordine crescente selezionando uno o piu' attributi attraverso keyword ORDER BY
+
+
+input: 
+
+        template1=# SELECT * FROM persons ORDER BY country_of_birth,secondo-campo ASC; // ordinamento in base alla citta' di nascita
+
+
+
+output: 
+
+
+        id | first_name | last_name |          email           | gender | date_of_birth |   country_of_birth    
+        ----+------------+-----------+--------------------------+--------+---------------+-----------------------
+        9 | Binni      | Gull      | bgull8@geocities.jp      | Female | 2023-08-31    | Belarus
+        8 | Misti      | Anster    | manster7@studiopress.com | Female | 2023-07-11    | China
+        6 | Ursulina   | Yushin    | uyushin5@sogou.com       | Female | 2023-03-15    | China
+        4 | Mikol      | Preshaw   | mpreshaw3@reddit.com     | Male   | 2023-10-29    | Indonesia
+        2 | Ethelin    | Hurran    | ehurran1@ebay.com        | Female | 2023-08-26    | Indonesia
+        3 | Mitch      | Flinders  | mflinders2@rediff.com    | Male   | 2023-09-02    | Ireland
+        5 | Marianne   | Paolo     | mpaolo4@pinterest.com    | Female | 2023-06-03    | Mali
+        1 | Fayth      | Orsman    | forsman0@buzzfeed.com    | Female | 2023-02-09    | Morocco
+        7 | Euell      | Luciani   | eluciani6@psu.edu        | Male   | 2023-03-15    | Palestinian Territory
+        10 | Aurie      | Putson    | aputson9@upenn.edu       | Female | 2023-07-04    | Venezuela
+        (10 rows)
+
+
+
+--> per ordinare i dati senza doppioni si utilizza la keyword DISTINCT nome-campo // in questo caso non ci sono due Indonesia o Cina
+
+
+input: 
+
+
+        template1=# SELECT DISTINCT country_of_birth FROM persons_ten ORDER BY country_of_birth ASC;
+
+
+
+
+output:    
+
+        country_of_birth    
+        -----------------------
+        Belarus
+        China
+        Indonesia
+        Ireland
+        Mali
+        Morocco
+        Palestinian Territory
+        Venezuela
+        (8 rows)

@@ -1,0 +1,99 @@
+--> IL METODO ROUND(valore_colonna, numeri_decimali) arrotonda dopo il valore si inserisce i numeri per cui si vuole arrotondare
+
+--> IN QUESTO ESEMPIO SI CALCOLA IL 10% del prezzo
+
+
+input e output: 
+
+
+
+                carshop=# SELECT id, brand, model, price,ROUND(price * 0.10, 2)
+                carshop-# FROM cars
+                carshop-# ;
+                id  |     brand     |        model         |  price   |  round  
+                ------+---------------+----------------------+----------+---------
+                    1 | Land Rover    | Sterling             | 87665.38 | 8766.54
+                    2 | GMC           | Acadia               | 17662.69 | 1766.27
+                    3 | Ford          | F250                 | 16819.19 | 1681.92
+                    4 | Chevrolet     | Sportvan G30         | 31932.31 | 3193.23
+                    5 | Lexus         | ES                   | 92820.92 | 9282.09
+                    6 | Kia           | Sorento              | 41368.24 | 4136.82
+                    7 | Toyota        | Sienna               | 22861.43 | 2286.14
+                    8 | Audi          | S6                   | 62251.73 | 6225.17
+                    9 | Subaru        | Justy                | 92998.82 | 9299.88
+                10 | Chevrolet     | Express 2500         | 10823.69 | 1082.37
+                11 | Cadillac      | Brougham             | 44556.13 | 4455.61
+                12 | BMW           | 7 Series             | 34468.61 | 3446.86
+                13 | Mazda         | RX-8                 | 51272.48 | 5127.25
+                14 | Jensen        | Interceptor          | 63061.13 | 6306.11
+                15 | Saab          | 9-5                  | 67950.14 | 6795.01
+                16 | Oldsmobile    | Bravada              | 94937.82 | 9493.78
+                17 | Hyundai       | Sonata               | 92241.49 | 9224.15
+                18 | Ford          | Ranger               | 79935.60 | 7993.56
+                19 | Lincoln       | Navigator            | 96536.95 | 9653.70
+                20 | Chevrolet     | Impala               | 77099.71 | 7709.97
+                21 | Volkswagen    | GTI                  | 70591.90 | 7059.19
+                22 | Mazda         | 626                  | 44424.66 | 4442.47
+                23 | Mitsubishi    | Eclipse              | 52755.44 | 5275.54
+                24 | Lincoln       | Mark LT              | 76975.55 | 7697.56
+                25 | Mitsubishi    | Mirage               | 70540.83 | 7054.08
+                26 | Maserati      | Spyder               | 61044.30 | 6104.43
+                27 | Hyundai       | XG350                | 69834.46 | 6983.45
+                28 | Mitsubishi    | Mirage               | 40994.79 | 4099.48
+                29 | Mercury       | Grand Marquis        | 95016.15 | 9501.62
+                30 | Scion         | xD                   | 29508.26 | 2950.83
+                31 | Mazda         | Miata MX-5           | 44866.89 | 4486.69
+                32 | Suzuki        | XL-7                 | 33833.08 | 3383.31
+                33 | Volkswagen    | Cabriolet            | 90924.81 | 9092.48
+                34 | Chevrolet     | S10 Blazer           | 70819.47 | 7081.95
+                35 | Porsche       | 911                  | 74000.67 | 7400.07
+                36 | Aston Martin  | DB9 Volante          | 23156.38 | 2315.64
+                37 | Mercury       | Sable                | 90324.56 | 9032.46
+                38 | Mercedes-Benz | CL-Class             | 70859.34 | 7085.93
+                39 | Dodge         | Stratus              | 87666.44 | 8766.64
+                40 | Cadillac      | SRX                  | 95822.09 | 9582.21
+                41 | Volkswagen    | Touareg              | 76028.72 | 7602.87
+                42 | Subaru        | Leone                | 48038.26 | 4803.83
+                43 | Porsche       | 911                  | 81493.40 | 8149.34
+                44 | Cadillac      | Eldorado             | 22975.17 | 2297.52
+                45 | Kia           | Spectra              | 11497.68 | 1149.77
+                46 | BMW           | 7 Series             | 72606.49 | 7260.65
+                47 | Subaru        | SVX                  | 92278.63 | 9227.86
+                48 | Honda         | Civic                | 44375.97 | 4437.60
+                49 | Volvo         | S80                  | 20071.52 | 2007.15
+                50 | Maserati      | Quattroporte         | 81700.02 | 8170.00
+
+
+
+
+
+--> PER CALCOLARE LA PERCENTUALE SI USA IL METODO ROUND(valore_colonna - (valore_colonna * PERCENTUALE))
+
+
+esempio:
+
+
+input e output:
+
+
+                carshop=# SELECT brand, model, price, ROUND(price - (price * 0.10))
+                carshop-# FROM cars;
+                    brand     |        model         |  price   | round 
+                ---------------+----------------------+----------+-------
+                Land Rover    | Sterling             | 87665.38 | 78899
+                GMC           | Acadia               | 17662.69 | 15896
+                Ford          | F250                 | 16819.19 | 15137
+                Chevrolet     | Sportvan G30         | 31932.31 | 28739
+                Lexus         | ES                   | 92820.92 | 83539
+                Kia           | Sorento              | 41368.24 | 37231
+                Toyota        | Sienna               | 22861.43 | 20575
+                Audi          | S6                   | 62251.73 | 56027
+                Subaru        | Justy                | 92998.82 | 83699
+                Chevrolet     | Express 2500         | 10823.69 |  9741
+                Cadillac      | Brougham             | 44556.13 | 40101
+                BMW           | 7 Series             | 34468.61 | 31022
+                Mazda         | RX-8                 | 51272.48 | 46145
+                Jensen        | Interceptor          | 63061.13 | 56755
+                Saab          | 9-5                  | 67950.14 | 61155
+                Oldsmobile    | Bravada              | 94937.82 | 85444
+                Hyundai       | Sonata               | 92241.49 | 83017

@@ -1,0 +1,50 @@
+--> per filtrare i dati in base ad una condizione si utilizza la keyword WHERE inoltre e possibile combinare le condizioni
+    con i operatori logici AND , OR 
+
+
+    input:
+    
+            template1=# SELECT * FROM persons WHERE gender = 'Female' AND country_of_birth = 'China';
+
+
+
+
+    output: 
+            id | first_name | last_name |             email              | gender | date_of_birth | country_of_birth 
+            ----+------------+-----------+--------------------------------+--------+---------------+------------------
+            8 | Lira       | Isham     | lisham7@cmu.edu                | Female | 2023-03-07    | China
+            45 | Robena     | Snowsill  | rsnowsill18@shop-pro.jp        | Female | 2023-09-22    | China
+            66 | Henrietta  | Frogley   | hfrogley1t@cdbaby.com          | Female | 2023-08-12    | China
+            67 | Dedra      | Bucky     | dbucky1u@posterous.com         | Female | 2023-06-01    | China
+            71 | Kristin    | McGrudder | kmcgrudder1y@noaa.gov          | Female | 2023-12-12    | China
+            82 | Queenie    | Pace      | qpace29@scientificamerican.com | Female | 2023-12-28    | China
+            93 | Cherianne  | Isaq      | cisaq2k@fastcompany.com        | Female | 2023-06-06    | China
+            (7 rows)
+
+--> esempio di OR
+
+input: template1=# SELECT * FROM persons WHERE country_of_birth = 'Indonesia' OR country_of_birth = 'Brazil';
+
+
+output:
+        id  | first_name | last_name  |            email             | gender | date_of_birth | country_of_birth 
+        -----+------------+------------+------------------------------+--------+---------------+------------------
+        2 | Sherrie    | Colclough  | scolclough1@upenn.edu        | Female | 2023-11-20    | Indonesia
+        9 | Adolpho    | Houchen    | ahouchen8@soundcloud.com     | Male   | 2023-09-03    | Indonesia
+        12 | Hashim     | Gilchriest | hgilchriestb@nasa.gov        | Male   | 2023-02-05    | Brazil
+        19 | Nathanael  | Trevino    | ntrevinoi@clickbank.net      | Male   | 2023-11-14    | Indonesia
+        20 | Valdemar   | Bowling    | vbowlingj@yahoo.com          | Male   | 2023-09-25    | Brazil
+        28 | Cory       | Geddes     | cgeddesr@com.com             | Female | 2023-11-14    | Indonesia
+        31 | Petey      | Purdy      | ppurdyu@bloomberg.com        | Male   | 2023-01-08    | Indonesia
+        41 | Lowell     | Dipple     | ldipple14@rambler.ru         | Male   | 2023-03-19    | Indonesia
+        47 | Tanney     | Blades     | tblades1a@samsung.com        | Male   | 2023-05-23    | Indonesia
+        50 | Tab        | Tinan      | ttinan1d@wikipedia.org       | Male   | 2023-07-10    | Indonesia
+        59 | Philomena  | Kayser     | pkayser1m@miibeian.gov.cn    | Female | 2023-04-17    | Indonesia
+        64 | Katine     | Clair      | kclair1r@theglobeandmail.com | Female | 2023-11-25    | Indonesia
+        70 | Jackson    | Lampke     | jlampke1x@yellowpages.com    | Male   | 2023-04-07    | Indonesia
+        86 | Matthus    | Quogan     | mquogan2d@prweb.com          | Male   | 2023-01-24    | Indonesia
+        96 | Eddie      | Debney     | edebney2n@technorati.com     | Male   | 2023-04-25    | Indonesia
+        97 | Dev        | Tefft      | dtefft2o@fema.gov            | Male   | 2023-12-19    | Brazil
+        98 | Deirdre    | Davydoch   | ddavydoch2p@cbsnews.com      | Female | 2023-10-13    | Indonesia
+        100 | Georgiana  | Minmagh    | gminmagh2r@princeton.edu     | Female | 2023-08-12    | Indonesia
+        (18 rows)

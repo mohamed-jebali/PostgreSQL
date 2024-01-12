@@ -1,0 +1,34 @@
+--> LA FUNZIONE ON CONFLICT() permette la gestione in caso di errore di salvataggio di un record
+
+esempio:
+
+
+input e output:
+
+                --> GESTIONE DEL ERRORE CON ID E LA KEYWORD DO NOTHING
+
+                template1=# insert into persons (id, first_name, last_name, email, gender, date_of_birth, country_of_birth) values (2, 'Ezra', 'McClenan', 'emcclenan1@pen.io', 'Male', '7/16/1998', 'Japan') ON CONFLICT(id) DO NOTHING ; 
+                INSERT 0 0
+
+
+
+                --> BISOGNA CONSIDERARE CHE SE NELLA NON C'E' ALCUN VINCOLO
+                    CIOE' UN CONSTRAINT IL MESSAGGIO DI INSERT 0 0 NON CI SARA'
+
+                template1=# insert into persons (id, first_name, last_name, email, gender, date_of_birth, country_of_birth) values (101, 'Ericha', 'Hawtry', 'ehawtry0@macromedia.com', 'Female', '10/20/1976', 'Russia') ON CONFLICT(email) DO NOTHING;
+                ERROR:  there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+
+                --> SI PUO' ANCHE AVERE UN ALTRO COMPORTAMENTO IN CASO DI CONFLITTO
+                    SI PUO AGGIORNARE UN RECORD CON LE KEYWORD DO UPDATE SET nome_colonna = EXCLUDED.nome_colonna;
+                    IN QUESTO CASO ANCHE SE E PRESENTE UN CONFLITTO DI ID L'EMAIL DEL RECORD VERRA MODIFICATA
+
+                template1=# insert into persons (id, first_name, last_name, email, gender, date_of_birth, country_of_birth) values (2, 'Ezra', 'McClenan', 'emcclenan1@pen.it', 'Male', '7/16/1998', 'Japan') ON CONFLICT(id) DO UPDATE SET email = EXCLUDED.email;
+                INSERT 0 1
+                template1=# SELECT *
+                template1-# FROM persons
+                template1-# WHERE id = 2;
+                id | first_name | last_name |       email       | gender | date_of_birth | country_of_birth 
+                ----+------------+-----------+-------------------+--------+---------------+------------------
+                2 | Ezra       | McClenan  | emcclenan1@pen.it | Male   | 1998-07-16    | Japan
+                (1 row)

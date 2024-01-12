@@ -1,0 +1,25 @@
+--> la keyword HAVING permette di filtrare i dati in in base ad una altra condizione 
+    viene utlizzata assieme a GROUP BY per applicare un ulteriore filtraggio dei dati
+
+
+input:
+
+        template1=# SELECT country_of_birth, COUNT (*)
+        template1-# FROM persons
+        template1-# GROUP BY country_of_birth 
+        template1-# HAVING COUNT(*) >= 3 
+        template1-# ORDER BY country_of_birth;
+
+output: 
+
+        country_of_birth | count 
+        ------------------+-------
+        Brazil           |     3
+        China            |    16
+        France           |     4
+        Indonesia        |    15
+        Philippines      |     5
+        Portugal         |     4
+        Russia           |     3
+        Thailand         |     3
+        (8 rows)

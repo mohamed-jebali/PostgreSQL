@@ -1,0 +1,29 @@
+--> FUNZIONE COALESCE(valore1, valore2, valore_di_default), IN CASO IN CUI IL VALORE NON E' PRESENTE DI DEFAULT VERRA' INSERITO IL VALORE SECONDARIO
+Nota Bene: si possono aggiungere piu valori o in caso che il valore non ci sia
+
+
+esempio:
+
+
+input e output:
+
+
+                template1=# SELECT first_name, last_name, COALESCE(email,'email not provided') AS email
+                template1-# FROM persons;
+                first_name |  last_name  |             email              
+                ------------+-------------+--------------------------------
+                Omero      | Lownds      | olownds0@sourceforge.net
+                Sherrie    | Colclough   | scolclough1@upenn.edu
+                Far        | Lamprecht   | flamprecht2@github.com
+                Itch       | Matveiko    | imatveiko3@dropbox.com
+                Kirby      | Suche       | ksuche4@ed.gov
+                Shelley    | Ensor       | sensor5@pen.io
+                Darcee     | Pavlitschek | dpavlitschek6@addtoany.com
+                Lira       | Isham       | lisham7@cmu.edu
+                Adolpho    | Houchen     | ahouchen8@soundcloud.com
+                Iona       | Rastall     | irastall9@wikispaces.com
+                Will       | McAnulty    | email not provided
+                Hashim     | Gilchriest  | hgilchriestb@nasa.gov
+                Ive        | Amdohr      | iamdohrc@mozilla.com
+                Matthaeus  | Bufton      | mbuftond@theatlantic.com
+                Aggy       | Gillogley   | agillogleye@cbslocal.com

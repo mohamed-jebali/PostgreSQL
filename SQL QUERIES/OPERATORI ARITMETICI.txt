@@ -1,0 +1,60 @@
+--> OPERATORI ARITMETICI + - * / ^ % FACTORIAL(valore)
+
+esempi: 
+
+
+input e output:
+
+
+                carshop=# SELECT 5 + 5;
+                ?column? 
+                ----------
+                10
+                (1 row)
+
+
+
+                carshop=# SELECT 8 - 2;
+                ?column? 
+                ----------
+                        6
+                (1 row)
+
+
+
+                carshop=# SELECT 8 * 2;
+                ?column? 
+                ----------
+                16
+                (1 row)
+
+
+                carshop=# SELECT 64 / 8;
+                ?column? 
+                ----------
+                        8
+                (1 row)
+
+
+                carshop=# SELECT 10 ^ 3;
+                ?column? 
+                ----------
+                1000
+                (1 row)
+
+
+
+                carshop=# SELECT 10 % 3;
+                ?column? 
+                ----------
+                        1
+                (1 row)
+
+
+
+
+                carshop=# SELECT FACTORIAL(5);
+                factorial 
+                -----------
+                120
+                (1 row)
