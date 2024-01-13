@@ -1,0 +1,57 @@
+--> PER AGGIUNGERE UNA FOREIGN KEY BISOGNA SPECIFICARE A QUALE TABELLA APPARTIENE
+    IN UNA RELAZIONE ONE TO ONE
+
+    NOTA BENE: BISOGNA ESEGUIRE LA TABELLA cars_ten PRIMA DATO CHE IN persons_ten NON E' ANCORA
+               PRESENTE LA TABELLA cars_ten
+
+
+esempio:
+
+
+input e output:
+
+
+                create table persons_ten (
+                    id BIGSERIAL PRIMARY KEY NOT NULL,
+                    first_name VARCHAR(50) NOT NULL,
+                    last_name VARCHAR(50) NOT NULL,
+                    email VARCHAR(50),
+                    gender VARCHAR(50) NOT NULL,
+                    date_of_birth DATE NOT NULL,
+                    country_of_birth VARCHAR(50) NOT NULL,
+                    car_id BIGINT REFERENCES cars_ten (id), --> IN QUESTO CASO SI PRENDE ID DELLA TABELLA CARS E SI SPECIFICA LA TABELLA DI APPARTENZA
+                    UNIQUE(car_id) --> IN QUESTA PARTE SI AGGIUNGE UN CONSTRAINT SPECIFICANDO CHE UNA PERSONA PUO' AVERE SOLTANTO UNA MACCHINA
+                );
+
+
+              --> PER ASSOCIARE UNA MACCHINA AD UNA PERSONA
+
+              input:
+
+
+                        template1=# UPDATE persons_ten SET car_id = 1 WHERE id = 2;
+                        UPDATE 1
+
+              output:
+
+                                    id | first_name | last_name |          email           | gender | date_of_birth |   country_of_birth    | car_id 
+                        ----+------------+-----------+--------------------------+--------+---------------+-----------------------+--------
+                        1 | Fayth      | Orsman    | forsman0@buzzfeed.com    | Female | 2023-02-09    | Morocco               |       
+                        3 | Mitch      | Flinders  | mflinders2@rediff.com    | Male   | 2023-09-02    | Ireland               |       
+                        4 | Mikol      | Preshaw   | mpreshaw3@reddit.com     | Male   | 2023-10-29    | Indonesia             |       
+                        5 | Marianne   | Paolo     | mpaolo4@pinterest.com    | Female | 2023-06-03    | Mali                  |       
+                        6 | Ursulina   | Yushin    | uyushin5@sogou.com       | Female | 2023-03-15    | China                 |       
+                        7 | Euell      | Luciani   | eluciani6@psu.edu        | Male   | 2023-03-15    | Palestinian Territory |       
+                        8 | Misti      | Anster    | manster7@studiopress.com | Female | 2023-07-11    | China                 |       
+                        9 | Binni      | Gull      | bgull8@geocities.jp      | Female | 2023-08-31    | Belarus               |       
+                        10 | Aurie      | Putson    | aputson9@upenn.edu       | Female | 2023-07-04    | Venezuela             |       
+                        2 | Ethelin    | Hurran    | ehurran1@ebay.com        | Female | 2023-08-26    | Indonesia             |      1
+                        
+
+                --> SE PROVIAMO AD ASSOCIARE UN ALTRA MACCHINA AD UNA ALTRA PERSONA
+                    ENTRA IN GIOCO IL CONSTRAINT UNIQUE(ID) CHE IMPEDISCE CHE UNA
+                    PERSONA ABBIA DUE MACCHINE
+
+                    template1=# UPDATE persons_ten SET car_id = 2 WHERE id = 1;
+                    ERROR:  duplicate key value violates unique constraint "persons_ten_car_id_key"
+                    DETAIL:  Key (car_id)=(2) already exists.

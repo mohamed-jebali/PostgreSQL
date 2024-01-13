@@ -1,0 +1,35 @@
+--> PER ESPORTARE UNA QUERY SQL IN DIVERSI FORMATI SI UTLIZZA \copy
+
+
+esempio: FORMATO CSV
+
+
+input:
+      template1=# \copy (SELECT * FROM persons_ten) TO '/Users/mohamed/Desktop/prove programmazione/PostgreSQL/results.csv' DELIMITER ',' CSV HEADER;
+
+
+output: 
+      COPY 10
+
+
+
+esempio: FORMATO JSON
+
+
+input:
+      template1=# \copy (SELECT row_to_json(persons_ten) FROM persons_ten) TO '/Users/mohamed/Desktop/prove programmazione/PostgreSQL/results.json';
+
+
+output: 
+      COPY 10
+
+
+esempio: FORMATO XLSX
+
+
+input:
+      \copy (SELECT * FROM persons_ten) TO '/Users/mohamed/Desktop/prove programmazione/PostgreSQL/results.xlsx' WITH HEADER;
+
+
+output: 
+      COPY 10

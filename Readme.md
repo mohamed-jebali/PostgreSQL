@@ -24,3 +24,8 @@ Dopo l'installazione, imparerai come connetterti a un database PostgreSQL utiliz
 ## Creazione del Database
 
 Scoprirai come creare un nuovo database e gestire gli utenti e i permessi associati ad esso.
+
+
+## Per info riguardante il tutorial seguito
+
+Link corso youtube: https://www.youtube.com/playlist?list=PLwvrYc43l1MxAEOI_KwGe8l42uJxMoKeS

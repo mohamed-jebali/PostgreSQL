@@ -1,1 +1,2 @@
 Link --> documentazione : https://www.postgresql.org/docs/current/datatype.html
+Link --> documentazione CodeGrind : https://codegrind.it/documentazione/sql/tipi-di-dati

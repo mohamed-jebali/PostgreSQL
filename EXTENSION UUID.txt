@@ -1,0 +1,146 @@
+--> PER VISUALIZZARE TUTTE LE ESTENSIONI DI PSQL
+
+input:  
+
+        template1=# SELECT * 
+        template1-# FROM pg_available_extensions;
+
+
+--> SELEZIONAMO uuid-ossp CON LA QUERY:
+
+input:
+
+        template1=# SELECT * FROM pg_available_extensions;
+        CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+
+--> DOPO VERIFICHIAMO CHE:
+
+
+output: 
+
+        uuid-ossp                    | 1.1             | 1.1               | generate universally unique identifiers (UUIDs)
+
+
+
+--> DOPO POSSIAMO VEDERE LE FUNZIONI CHE CI FORNISCE L'ESTENSIONE uuid-ossp
+    LINK documentazione: https://www.postgresql.org/docs/current/uuid-ossp.html
+
+input:
+
+       template1=# \df
+
+
+
+output:
+
+                                                List of functions
+            Schema |        Name        | Result data type |    Argument data types    | Type 
+            --------+--------------------+------------------+---------------------------+------
+            public | uuid_generate_v1   | uuid             |                           | func
+            public | uuid_generate_v1mc | uuid             |                           | func
+            public | uuid_generate_v3   | uuid             | namespace uuid, name text | func
+            public | uuid_generate_v4   | uuid             |                           | func
+            public | uuid_generate_v5   | uuid             | namespace uuid, name text | func
+            public | uuid_nil           | uuid             |                           | func
+            public | uuid_ns_dns        | uuid             |                           | func
+            public | uuid_ns_oid        | uuid             |                           | func
+            public | uuid_ns_url        | uuid             |                           | func
+            public | uuid_ns_x500       | uuid             |                           | func
+            (10 rows) 
+
+--> SI USERA' POI LA VERSIONE v4
+    CHE CI CREA POI DELLE PRIMARY KEY PIU COMPLESSE PER RENDERE DIFFICILE
+    L 'EXPLOIT DI UN POTENZIALE ATTACCO HACKER
+
+
+            template1=# SELECT uuid_generate_v4();
+                    uuid_generate_v4           
+            --------------------------------------
+            b9d9bea0-8c9c-4adb-8cfd-fa8e0111fe61
+            (1 row)
+
+--> PER INSERIRE DEI ID USANDO LA FUNZIONE uuid_generate_v4() GUARDA
+    LA TABELLA persons_ten
+
+
+            CREATE TABLE persons_ten (
+            id UUID DEFAULT uuid_generate_v4() PRIMARY KEY NOT NULL,
+            first_name VARCHAR(50) NOT NULL,
+            last_name VARCHAR(50) NOT NULL,
+            email VARCHAR(50),
+            gender VARCHAR(50) NOT NULL,
+            date_of_birth DATE NOT NULL,
+            country_of_birth VARCHAR(50) NOT NULL,
+            car_id UUID REFERENCES cars_ten (id),
+            UNIQUE(car_id)
+        );
+        insert into persons_ten (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Fayth', 'Orsman', 'forsman0@buzzfeed.com', 'Female', '2/9/2023', 'Morocco');
+        insert into persons_ten (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Ethelin', 'Hurran', 'ehurran1@ebay.com', 'Female', '8/26/2023', 'Indonesia');
+        insert into persons_ten (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Mitch', 'Flinders', 'mflinders2@rediff.com', 'Male', '9/2/2023', 'Ireland');
+        insert into persons_ten (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Mikol', 'Preshaw', 'mpreshaw3@reddit.com', 'Male', '10/29/2023', 'Indonesia');
+        insert into persons_ten (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Marianne', 'Paolo', 'mpaolo4@pinterest.com', 'Female', '6/3/2023', 'Mali');
+        insert into persons_ten (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Ursulina', 'Yushin', 'uyushin5@sogou.com', 'Female', '3/15/2023', 'China');
+        insert into persons_ten (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Euell', 'Luciani', 'eluciani6@psu.edu', 'Male', '3/15/2023', 'Palestinian Territory');
+        insert into persons_ten (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Misti', 'Anster', 'manster7@studiopress.com', 'Female', '7/11/2023', 'China');
+        insert into persons_ten (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Binni', 'Gull', 'bgull8@geocities.jp', 'Female', '8/31/2023', 'Belarus');
+        insert into persons_ten (first_name, last_name, email, gender, date_of_birth, country_of_birth) values ('Aurie', 'Putson', 'aputson9@upenn.edu', 'Female', '7/4/2023', 'Venezuela');
+
+
+
+--> E' POSSIBILE COLLEGARE ID ATTRAVERSO LE RELAZIONI PURCHE' SIA SPECIFICATO IL TIPO DI DATO
+
+dati:
+
+        create table cars_ten (
+            id UUID DEFAULT uuid_generate_v4() PRIMARY KEY NOT NULL,
+            brand VARCHAR(100) NOT NULL,
+            model VARCHAR(100) NOT NULL,
+            price NUMERIC(19, 2) NOT NULL
+        );
+        insert into cars_ten (brand, model, price) values ('Land Rover', 'Sterling', '87665.38');
+        insert into cars_ten (brand, model, price) values ('GMC', 'Acadia', '17662.69');
+        insert into cars_ten (brand, model, price) values ('Ford', 'F250', '16819.19');
+        insert into cars_ten (brand, model, price) values ('Chevrolet', 'Sportvan G30', '31932.31');
+        insert into cars_ten (brand, model, price) values ('Lexus', 'ES', '92820.92');
+        insert into cars_ten (brand, model, price) values ('Kia', 'Sorento', '41368.24');
+        insert into cars_ten (brand, model, price) values ('Toyota', 'Sienna', '22861.43');
+        insert into cars_ten (brand, model, price) values ('Audi', 'S6', '62251.73');
+        insert into cars_ten (brand, model, price) values ('Subaru', 'Justy', '92998.82');
+        insert into cars_ten (brand, model, price) values ('Chevrolet', 'Express 2500', '10823.69');
+
+
+
+esempio query:
+
+                template1=# UPDATE persons_ten SET car_id = '258a7272-4ac3-4d9a-b34d-1e34d129816d' WHERE id = '4e816748-cd56-4e8f-996f-1ff249ef8120';
+                UPDATE 1
+                template1=# SELECT *
+                template1-# FROM persons_ten
+                template1-# JOIN cars_ten ON persons_ten.car_id = cars_ten.id;
+                                id                  | first_name | last_name |         email         | gender | date_of_birth | country_of_birth |                car_id                |                  id                  |   brand    |  model   |  price   
+                --------------------------------------+------------+-----------+-----------------------+--------+---------------+------------------+--------------------------------------+--------------------------------------+------------+----------+----------
+                4e816748-cd56-4e8f-996f-1ff249ef8120 | Fayth      | Orsman    | forsman0@buzzfeed.com | Female | 2023-02-09    | Morocco          | 258a7272-4ac3-4d9a-b34d-1e34d129816d | 258a7272-4ac3-4d9a-b34d-1e34d129816d | Land Rover | Sterling | 87665.38
+                (1 row)
+
+
+                --> VISUALIZZAZIONE ESPANSA
+
+
+                template1=# \x
+                Expanded display is on.
+                template1=# SELECT *       
+                FROM persons_ten                                                                                                                                                                                                                                                                                                                                                                                        JOIN cars_ten ON persons_ten.car_id = cars_ten.id;
+                -[ RECORD 1 ]----+-------------------------------------
+                id               | 4e816748-cd56-4e8f-996f-1ff249ef8120
+                first_name       | Fayth
+                last_name        | Orsman
+                email            | forsman0@buzzfeed.com
+                gender           | Female
+                date_of_birth    | 2023-02-09
+                country_of_birth | Morocco
+                car_id           | 258a7272-4ac3-4d9a-b34d-1e34d129816d
+                id               | 258a7272-4ac3-4d9a-b34d-1e34d129816d
+                brand            | Land Rover
+                model            | Sterling
+                price            | 87665.38

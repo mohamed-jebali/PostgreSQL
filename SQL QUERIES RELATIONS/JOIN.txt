@@ -1,0 +1,174 @@
+--> PER ESPANDERE LA VISUALIZZAZIONE DELLE TABELLE DA TERMINALE SI UTLIZZA IL COMANDO:
+
+    template1=# \x
+    Expanded display is on.
+
+
+--> PER DISATTIVARE LA VISUALIZZARE ESPANSA SI UTLIZZA LO STESSO COMANDO:
+
+
+    template1=# \x
+    Expanded display is off.
+
+
+--> PER VISUALIZZARE I DATI E I COLLEGAMENTI IN COMUNE TRA LA TABELLA persons_ten e cars_ten INNER JOIN
+    SI UTLIZZA LA KEYWORD JOIN E ON STRUTTURA QUERY : 
+
+    esempio:
+
+
+    input: 
+    
+                template1=# SELECT *
+                template1-# FROM persons_ten
+                template1-# JOIN cars_ten ON persons_ten.car_id = cars_ten.id;
+
+
+
+    output:
+
+                -[ RECORD 1 ]----+-------------------------
+                id               | 1
+                first_name       | Fayth
+                last_name        | Orsman
+                email            | forsman0@buzzfeed.com
+                gender           | Female
+                date_of_birth    | 2023-02-09
+                country_of_birth | Morocco
+                car_id           | 1
+                id               | 1
+                brand            | Land Rover
+                model            | Sterling
+                price            | 87665.38
+                -[ RECORD 2 ]----+-------------------------
+                id               | 2
+                first_name       | Ethelin
+                last_name        | Hurran
+                email            | ehurran1@ebay.com
+                gender           | Female
+                date_of_birth    | 2023-08-26
+                country_of_birth | Indonesia
+                car_id           | 2
+                id               | 2
+                brand            | GMC
+                model            | Acadia
+                price            | 17662.6
+
+--> SI PUO' SELEZIONARE ANCHE DIVERSE COLONNE CON LA DOT NOTATION
+    SPECIFICANDO QUALI COLONNE SI VOGLIONO SELEZIONARE
+
+
+input e output:
+
+
+                template1=# SELECT persons_ten.first_name, persons_ten.last_name, cars_ten.brand, cars_ten.model, cars_ten.price
+                template1-# FROM persons_ten
+                template1-# JOIN cars_ten ON persons_ten.car_id = cars_ten.id;
+                -[ RECORD 1 ]----------
+                first_name | Fayth
+                last_name  | Orsman
+                brand      | Land Rover
+                model      | Sterling
+                price      | 87665.38
+                -[ RECORD 2 ]----------
+                first_name | Ethelin
+                last_name  | Hurran
+                brand      | GMC
+                model      | Acadia
+                price      | 17662.69
+
+
+
+--> LEFT JOIN SELEZIONA I DATI ANCHE NON IN COMUNE CIOE TUTTI I DATI CON LE
+    CORRESPETTIVE COLONNE
+
+
+
+input e  output:
+
+                template1=# SELECT *
+                template1-# FROM persons_ten
+                template1-# LEFT JOIN cars_ten ON cars_ten.id = persons_ten.id;
+                id | first_name | last_name |          email           | gender | date_of_birth |   country_of_birth    | car_id | id |   brand    |    model     |  price   
+                ----+------------+-----------+--------------------------+--------+---------------+-----------------------+--------+----+------------+--------------+----------
+                1 | Fayth      | Orsman    | forsman0@buzzfeed.com    | Female | 2023-02-09    | Morocco               |      1 |  1 | Land Rover | Sterling     | 87665.38
+                2 | Ethelin    | Hurran    | ehurran1@ebay.com        | Female | 2023-08-26    | Indonesia             |      2 |  2 | GMC        | Acadia       | 17662.69
+                3 | Mitch      | Flinders  | mflinders2@rediff.com    | Male   | 2023-09-02    | Ireland               |        |  3 | Ford       | F250         | 16819.19
+                4 | Mikol      | Preshaw   | mpreshaw3@reddit.com     | Male   | 2023-10-29    | Indonesia             |        |  4 | Chevrolet  | Sportvan G30 | 31932.31
+                5 | Marianne   | Paolo     | mpaolo4@pinterest.com    | Female | 2023-06-03    | Mali                  |        |  5 | Lexus      | ES           | 92820.92
+                6 | Ursulina   | Yushin    | uyushin5@sogou.com       | Female | 2023-03-15    | China                 |        |  6 | Kia        | Sorento      | 41368.24
+                7 | Euell      | Luciani   | eluciani6@psu.edu        | Male   | 2023-03-15    | Palestinian Territory |        |  7 | Toyota     | Sienna       | 22861.43
+                8 | Misti      | Anster    | manster7@studiopress.com | Female | 2023-07-11    | China                 |        |  8 | Audi       | S6           | 62251.73
+                9 | Binni      | Gull      | bgull8@geocities.jp      | Female | 2023-08-31    | Belarus               |        |  9 | Subaru     | Justy        | 92998.82
+                10 | Aurie      | Putson    | aputson9@upenn.edu       | Female | 2023-07-04    | Venezuela             |        | 10 | Chevrolet  | Express 2500 | 10823.69
+                (10 rows)
+
+--> INOLTRE SI PUO SELEZIONARE I DATI IN CUI car_id CIOE LA FOREIGN KEY E NULL
+    OTTENDO COSI TUTTE LE ROW (PERSONE) CHE NON SONO ASSOCIATE ALLA TABELLA cars_ten
+
+esempio:
+
+
+input e output:
+
+
+                template1=# SELECT *
+                template1-# FROM persons_ten
+                template1-# WHERE car_id IS NULL;
+                id | first_name | last_name |          email           | gender | date_of_birth |   country_of_birth    | car_id 
+                ----+------------+-----------+--------------------------+--------+---------------+-----------------------+--------
+                3 | Mitch      | Flinders  | mflinders2@rediff.com    | Male   | 2023-09-02    | Ireland               |       
+                4 | Mikol      | Preshaw   | mpreshaw3@reddit.com     | Male   | 2023-10-29    | Indonesia             |       
+                5 | Marianne   | Paolo     | mpaolo4@pinterest.com    | Female | 2023-06-03    | Mali                  |       
+                6 | Ursulina   | Yushin    | uyushin5@sogou.com       | Female | 2023-03-15    | China                 |       
+                7 | Euell      | Luciani   | eluciani6@psu.edu        | Male   | 2023-03-15    | Palestinian Territory |       
+                8 | Misti      | Anster    | manster7@studiopress.com | Female | 2023-07-11    | China                 |       
+                9 | Binni      | Gull      | bgull8@geocities.jp      | Female | 2023-08-31    | Belarus               |       
+                10 | Aurie      | Putson    | aputson9@upenn.edu       | Female | 2023-07-04    | Venezuela             |     
+
+
+--> NOTA BENE CHE SE ELIMINIAMO UN RECORD DALLA TABELLA cars_ten ASSOCIATA
+    A UNA PERSONA NON FUNZIONERA' DATO CHE L'ID E 
+
+
+esempio:
+
+input e output:
+
+                template1=# DELETE FROM cars_ten                                                                                                                                  WHERE id = 1;
+                ERROR:  update or delete on table "cars_ten" violates foreign key constraint "persons_ten_car_id_fkey" on table "persons_ten"
+                DETAIL:  Key (id)=(1) is still referenced from table "persons_ten".
+
+
+
+--> QUINDI PER ELIMINARE UN DATO DALLA TABELLA cars_ten BISOGNA RIMUOVERE L'ASSOCIAZIONE
+    DELLA FOREIGN KEY NELLA TABELLA persons_ten CON LE KEYWORD UPDATE E SET 
+
+
+esempio:
+
+
+input: 
+
+            template1=# UPDATE persons_ten SET car_id = NULL WHERE id = 1;
+            UPDATE 1
+
+
+output:
+            template1=# SELECT *
+            template1-# FROM persons_ten;
+            id | first_name | last_name |          email           | gender | date_of_birth |   country_of_birth    | car_id 
+            ----+------------+-----------+--------------------------+--------+---------------+-----------------------+--------
+            3 | Mitch      | Flinders  | mflinders2@rediff.com    | Male   | 2023-09-02    | Ireland               |       
+            4 | Mikol      | Preshaw   | mpreshaw3@reddit.com     | Male   | 2023-10-29    | Indonesia             |       
+            5 | Marianne   | Paolo     | mpaolo4@pinterest.com    | Female | 2023-06-03    | Mali                  |       
+            6 | Ursulina   | Yushin    | uyushin5@sogou.com       | Female | 2023-03-15    | China                 |       
+            7 | Euell      | Luciani   | eluciani6@psu.edu        | Male   | 2023-03-15    | Palestinian Territory |       
+            8 | Misti      | Anster    | manster7@studiopress.com | Female | 2023-07-11    | China                 |       
+            9 | Binni      | Gull      | bgull8@geocities.jp      | Female | 2023-08-31    | Belarus               |       
+            10 | Aurie      | Putson    | aputson9@upenn.edu       | Female | 2023-07-04    | Venezuela             |       
+            2 | Ethelin    | Hurran    | ehurran1@ebay.com        | Female | 2023-08-26    | Indonesia             |      2
+            1 | Fayth      | Orsman    | forsman0@buzzfeed.com    | Female | 2023-02-09    | Morocco               |       
+            (10 rows)
+
+
